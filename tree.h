@@ -16,10 +16,12 @@ class Node
 		short numFour;
 		bool isRoot;
 		bool isLeaf;
-		Node *leftC;
-		Node *rightC;
+		Node *leftChild;
+		Node *rightChild;
+		friend class BTree;
 	public:
-		bool checkLeaf()
+		Node();
+		~Node();
 }
 
 class BTree
@@ -28,7 +30,9 @@ class BTree
 		int order;
 		Node root;
 	public:
-
+		BTree();
+		~Btree();
+		bool checkLeaf(Node temp);
 
 }
 
