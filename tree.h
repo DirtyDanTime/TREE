@@ -18,11 +18,12 @@ class Node
 		Node();
 		~Node();
 		short getVal(short loc);
-		void setVal(short num);
 		short getNodeNum();
 		void changeNodeNum(short num);
 		void setLeaf();
 		void setRoot();
+		bool getLeaf();
+		bool getRoot();
 }
 
 class BTree

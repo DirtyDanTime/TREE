@@ -53,11 +53,6 @@ short Node::getVal(short loc)
 	return;
 }
 
-void Node::setVal(short num)
-{
-	if()
-
-}
 
 short Node::getNodeNum() { return nodeNum; }
 
@@ -67,7 +62,29 @@ void Node::setLeaf() { isLeaf = true; return; }
 
 void Node::setRoot() { isRoot = true; return; }
 
+bool Node::getLeaf() { return isLeaf; }
+
+bool Node::getRoot() { return isRoot; }
+
 //Tree Functions
 
+BTree::BTree()
+{
+	order = 0;
+	root = NULL;
+	numOfNodes = 0;
+}
 
+Node::~Node() {}
 
+short BTree::incrementNum() { numOfNodes++; return numOfNodes; }
+
+short BTree::decrementNum() { numOfNodes--; return numOfNodes; }
+
+void BTree::incrementOrder() { order++; return; }
+
+void BTree::decrementOrder() { order--; return; }
+
+short BTree::getOrder() { return order; }
+
+bool BTree::checkLeaf(Node temp) { return temp.getLeaf(); }
