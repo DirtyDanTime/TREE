@@ -32,7 +32,7 @@ Node::~Node()
 
 short Node::getVal(short loc)
 {
-	switch(loc):
+	switch (loc)
 	{
 		case 1:
 			if(values[0] != NULL)
@@ -58,7 +58,7 @@ short Node::getVal(short loc)
 
 	cout << endl << "Desired node value NULL!" << endl;
 
-	return;
+	return NULL;
 }
 
 
@@ -83,9 +83,7 @@ BTree::BTree()
 	numOfNodes = 0;
 }
 
-Node::~Node() {}
-
-void BTree::insert(short num)
+//void BTree::insert(short num)
 {
 
 }

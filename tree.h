@@ -23,7 +23,7 @@ class Node
 		void setLeaf();
 		bool getLeaf();
 		bool getRoot();
-}
+};
 
 class BTree
 {
@@ -33,7 +33,7 @@ class BTree
 		int numOfNodes;
 	public:
 		BTree();
-		~Btree();
+		~BTree();
 		short incrementNum();
 		short decrementNum();
 		void incrementOrder();
@@ -43,7 +43,7 @@ class BTree
 		Node getRoot();
 		void setRoot(Node temp);
 
-}
+};
 
 #include "tree.cpp"
 
