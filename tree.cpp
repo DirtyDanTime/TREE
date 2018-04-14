@@ -1,3 +1,5 @@
+//Node functions
+
 Node::Node()
 {
 	numOne = NULL;
@@ -64,4 +66,12 @@ void Node::setVal(short num)
 short Node::getNodeNum() { return nodeNum; }
 
 void Node::changeNodeNum(short num) { nodeNum = num; return; }
+
+void Node::setLeaf() { isLeaf = true; return; }
+
+void Node::setRoot() { isRoot = true; return; }
+
+//Tree Functions
+
+
 
