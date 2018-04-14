@@ -21,8 +21,8 @@ class Node
 	public:
 		Node();
 		~Node();
-		int getVal(int place);
-		void setVal(int num, int place);
+		int getVal(int loc);
+		void setVal(int num, int loc);
 		int getNodeNum();
 		void changeNodeNum(short num);
 
