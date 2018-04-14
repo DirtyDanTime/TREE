@@ -1,6 +1,6 @@
 
 
-public Node()
+Node::Node()
 {
 	numOne = null;
 	numTwo = null;
