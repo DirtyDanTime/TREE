@@ -1,20 +1,20 @@
 //Node functions
 
-Node::Node()
+Node::Node(BTree tree)
 {
 	values = new short[4];
-	if(getOrder() == 0) 
+	if(tree.getOrder() == 0) 
 	{ 
 		isRoot = true; 
-		setincrementOrder();
-		setRoot(this);
+		tree.incrementOrder();
+		tree.setRoot(this);
 	}
 	else
 	{
 		isLeaf = true;
 	}
-	level = getOrder();
-	nodeNum = incrementNum();
+	level = tree.getOrder();
+	nodeNum = tree.incrementNum();
 	children = new Node *[5];
 	for(int i = 0; i < 6; i++)
 	{
@@ -30,12 +30,11 @@ Node::~Node()
 	}
 }
 
-short Node::getVal(short loc)
-{
+/*{
 	switch (loc)
 	{
 		case 1:
-			if(values[0] != NULL)
+			if(values[0] != nullptr)
 				return numOne;
 			break;
 		case 2:
@@ -59,7 +58,7 @@ short Node::getVal(short loc)
 	cout << endl << "Desired node value NULL!" << endl;
 
 	return NULL;
-}
+}*/
 
 
 short Node::getNodeNum() { return nodeNum; }
@@ -68,7 +67,7 @@ void Node::changeNodeNum(short num) { nodeNum = num; return; }
 
 void Node::setLeaf() { isLeaf = true; return; }
 
-void Node::setRoot(Node temp) { root = temp; return; }
+void BTree::setRoot(Node *temp) { root = temp; return; }
 
 bool Node::getLeaf() { return isLeaf; }
 
@@ -83,12 +82,12 @@ BTree::BTree()
 	numOfNodes = 0;
 }
 
-//void BTree::insert(short num)
+void BTree::insert(short num)
 {
 
 }
 
-Node BTree::getRoot() { return root; }
+Node BTree::getRoot() { return *root; }
 
 short BTree::incrementNum() { numOfNodes++; return numOfNodes; }
 

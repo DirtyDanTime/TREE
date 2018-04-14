@@ -4,6 +4,7 @@
 #include <iostream>
 
 using namespace std;
+class BTree;
 
 class Node
 {
@@ -15,7 +16,7 @@ class Node
 		bool isLeaf;
 		Node **children;
 	public:
-		Node();
+		Node(BTree tree);
 		~Node();
 		short getVal(short loc);
 		short getNodeNum();
@@ -41,7 +42,7 @@ class BTree
 		short getOrder();
 		bool checkLeaf(Node temp);
 		Node getRoot();
-		void setRoot(Node temp);
+		void setRoot(Node *temp);
 
 };
 
