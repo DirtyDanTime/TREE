@@ -6,13 +6,10 @@ Node::Node()
 	numTwo = null;
 	numThree = null;
 	numFour = null;
-	if(getOrder() == 0) 
-	{ 
-		isRoot = true; 
-	}
-	else
-	{
-
-	}
-	setOrder(1);
+	if(getOrder() == 0) { isRoot = true; incrementOrder(); }
+	isLeaf = true;
+	level = getOrder();
+	nodeNum = incrementNum();
+	leftChild->null;
+	rightChild->null;
 }
