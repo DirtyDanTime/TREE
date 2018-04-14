@@ -18,13 +18,15 @@ class Node
 		bool isLeaf;
 		Node *leftChild;
 		Node *rightChild;
-		friend class BTree;
 	public:
 		Node();
 		~Node();
-		int storedNum();
+		int getVal(int place);
+		void setVal(int num, int place);
+		int getNodeNum();
+		void changeNodeNum(short num);
 
-			
+
 }
 
 class BTree
@@ -39,7 +41,6 @@ class BTree
 		void decrementOrder();
 		int getOrder();
 		bool checkLeaf(Node temp);
-
 }
 
 #endif
