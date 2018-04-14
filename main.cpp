@@ -2,6 +2,6 @@
 
 int main()
 {
-
+	Node node;
 	return 0;
 }

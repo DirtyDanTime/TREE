@@ -10,17 +10,10 @@ class Node
 	private:
 		short nodeNum;
 		short level;
-		short numOne;
-		short numTwo;
-		short numThree;
-		short numFour;
+		short *values;
 		bool isRoot;
 		bool isLeaf;
-		Node *childOne;
-		Node *childTwo;
-		Node *childThree;
-		Node *childFour;
-		Node *childFive;
+		Node **children;
 	public:
 		Node();
 		~Node();

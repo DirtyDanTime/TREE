@@ -2,28 +2,24 @@
 
 Node::Node()
 {
-	numOne = NULL;
-	numTwo = NULL;
-	numThree = NULL;
-	numFour = NULL;
+	values = new short[4];
 	if(getOrder() == 0) { isRoot = true; incrementOrder(); }
 	isLeaf = true;
 	level = getOrder();
 	nodeNum = incrementNum();
-	childOne-> NULL;
-	childTwo-> NULL;
-	childThree-> NULL;
-	childFour-> NULL;
-	childFive-> NULL;
+	children = new Node *[5];
+	for(int i = 0; i < 6; i++)
+	{
+		children[i] = NULL;
+	}
 }
 
 Node::~Node()
 {
-	delete childOne;
-	delete childTwo;
-	delete childThree;
-	delete childFour;
-	delete childFive	
+	for(int i = 0; i < 6; i++)
+	{
+		delete children[i];
+	}
 }
 
 short Node::getVal(short loc)
@@ -31,19 +27,19 @@ short Node::getVal(short loc)
 	switch(loc):
 	{
 		case 1:
-			if(numOne != NULL)
+			if(values[0] != NULL)
 				return numOne;
 			break;
 		case 2:
-			if(numTwo != NULL)
+			if(values[1] != NULL)
 				return numTwo;
 			break;
 		case 3:
-			if(numThree != NULL)
+			if(values[2] != NULL)
 				return numThree;
 			break;
 		case 4:
-			if(numFour != NULL)
+			if(values[3] != NULL)
 				return numFour;
 			break;
 		default:
