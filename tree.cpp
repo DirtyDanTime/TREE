@@ -3,8 +3,16 @@
 Node::Node()
 {
 	values = new short[4];
-	if(getOrder() == 0) { isRoot = true; incrementOrder(); }
-	isLeaf = true;
+	if(getOrder() == 0) 
+	{ 
+		isRoot = true; 
+		setincrementOrder();
+		setRoot(this);
+	}
+	else
+	{
+		isLeaf = true;
+	}
 	level = getOrder();
 	nodeNum = incrementNum();
 	children = new Node *[5];
@@ -60,7 +68,7 @@ void Node::changeNodeNum(short num) { nodeNum = num; return; }
 
 void Node::setLeaf() { isLeaf = true; return; }
 
-void Node::setRoot() { isRoot = true; return; }
+void Node::setRoot(Node temp) { root = temp; return; }
 
 bool Node::getLeaf() { return isLeaf; }
 
@@ -76,6 +84,13 @@ BTree::BTree()
 }
 
 Node::~Node() {}
+
+void BTree::insert(short num)
+{
+
+}
+
+Node BTree::getRoot() { return root; }
 
 short BTree::incrementNum() { numOfNodes++; return numOfNodes; }
 

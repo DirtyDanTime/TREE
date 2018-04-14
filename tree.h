@@ -21,7 +21,6 @@ class Node
 		short getNodeNum();
 		void changeNodeNum(short num);
 		void setLeaf();
-		void setRoot();
 		bool getLeaf();
 		bool getRoot();
 }
@@ -30,7 +29,7 @@ class BTree
 {
 	private:
 		int order;
-		Node root;
+		Node *root;
 		int numOfNodes;
 	public:
 		BTree();
@@ -41,6 +40,9 @@ class BTree
 		void decrementOrder();
 		short getOrder();
 		bool checkLeaf(Node temp);
+		Node getRoot();
+		void setRoot(Node temp);
+
 }
 
 #include "tree.cpp"
