@@ -8,6 +8,9 @@ Node::Node()
 	isLeaf = true;
 	level = getOrder();
 	nodeNum = incrementNum();
-	leftChild->null;
-	rightChild->null;
+	childOne->null;
+	childTwo->null;
+	childThree->null;
+	childFour->null;
+	childFive->null;
 }
