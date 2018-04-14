@@ -84,7 +84,9 @@ BTree::BTree()
 
 void BTree::insert(short num)
 {
-
+	short i, temp;
+	Node *x = new Node(*tree);
+	x = root;
 }
 
 Node BTree::getRoot() { return *root; }

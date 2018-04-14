@@ -29,6 +29,7 @@ class Node
 class BTree
 {
 	private:
+		BTree *tree;
 		int order;
 		Node *root;
 		int numOfNodes;
@@ -43,6 +44,7 @@ class BTree
 		bool checkLeaf(Node temp);
 		Node getRoot();
 		void setRoot(Node *temp);
+		void insert(short num);
 
 };
 
