@@ -26,16 +26,30 @@ Node::~Node()
 
 short Node::getVal(short loc)
 {
-	if(loc == 1)
-		return numOne;
-	else if(loc == 2)
-		return numTwo;
-	else if(loc == 3)
-		return numThree;
-	else if(loc == 4)
-		return numFour;
-	else
-		return;
+	switch(loc):
+	{
+		case 1:
+			if(numOne != null)
+				return numOne;
+			break;
+		case 2:
+			if(numTwo null)
+				return numTwo;
+			break;
+		case 3:
+			if(numThree != null)
+				return numThree;
+			break;
+		case 4:
+			if(numFour != null)
+				return numFour;
+			break;
+		default:
+			return;
+			break;
+	}
+
+	return;
 }
 
 void Node::setVal(short num)
