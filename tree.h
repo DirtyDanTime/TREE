@@ -23,6 +23,7 @@ class Node
 		Node();
 		~Node();
 		int storedNum();
+
 			
 }
 
@@ -34,7 +35,8 @@ class BTree
 	public:
 		BTree();
 		~Btree();
-		void setOrder(int num);
+		void incrementOrder();
+		void decrementOrder();
 		int getOrder();
 		bool checkLeaf(Node temp);
 
