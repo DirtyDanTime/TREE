@@ -1,18 +1,18 @@
 Node::Node()
 {
-	numOne = null;
-	numTwo = null;
-	numThree = null;
-	numFour = null;
+	numOne = NULL;
+	numTwo = NULL;
+	numThree = NULL;
+	numFour = NULL;
 	if(getOrder() == 0) { isRoot = true; incrementOrder(); }
 	isLeaf = true;
 	level = getOrder();
 	nodeNum = incrementNum();
-	childOne->null;
-	childTwo->null;
-	childThree->null;
-	childFour->null;
-	childFive->null;
+	childOne-> NULL;
+	childTwo-> NULL;
+	childThree-> NULL;
+	childFour-> NULL;
+	childFive-> NULL;
 }
 
 Node::~Node()
@@ -29,19 +29,19 @@ short Node::getVal(short loc)
 	switch(loc):
 	{
 		case 1:
-			if(numOne != null)
+			if(numOne != NULL)
 				return numOne;
 			break;
 		case 2:
-			if(numTwo null)
+			if(numTwo != NULL)
 				return numTwo;
 			break;
 		case 3:
-			if(numThree != null)
+			if(numThree != NULL)
 				return numThree;
 			break;
 		case 4:
-			if(numFour != null)
+			if(numFour != NULL)
 				return numFour;
 			break;
 		default:
