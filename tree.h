@@ -25,8 +25,8 @@ class Node
 		void setVal(short num, short loc);
 		short getNodeNum();
 		void changeNodeNum(short num);
-
-
+		void setLeaf();
+		void setRoot();
 }
 
 class BTree
