@@ -46,4 +46,6 @@ class BTree
 		bool checkLeaf(Node temp);
 }
 
+#include "tree.cpp"
+
 #endif

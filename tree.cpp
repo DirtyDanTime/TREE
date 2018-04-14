@@ -1,5 +1,3 @@
-
-
 Node::Node()
 {
 	numOne = null;
