@@ -100,3 +100,5 @@ void BTree::decrementOrder() { order--; return; }
 short BTree::getOrder() { return order; }
 
 bool BTree::checkLeaf(Node temp) { return temp.getLeaf(); }
+
+//hello
