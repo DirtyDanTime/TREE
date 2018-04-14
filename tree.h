@@ -16,13 +16,16 @@ class Node
 		short numFour;
 		bool isRoot;
 		bool isLeaf;
-		Node *leftChild;
-		Node *rightChild;
+		Node *childOne;
+		Node *childTwo;
+		Node *childThree;
+		Node *childFour;
+		Node *childFive;
 	public:
 		Node();
 		~Node();
 		short getVal(short loc);
-		void setVal(short num, short loc);
+		void setVal(short num);
 		short getNodeNum();
 		void changeNodeNum(short num);
 		void setLeaf();
