@@ -21,9 +21,9 @@ class Node
 	public:
 		Node();
 		~Node();
-		int getVal(int loc);
-		void setVal(int num, int loc);
-		int getNodeNum();
+		short getVal(short loc);
+		void setVal(short num, short loc);
+		short getNodeNum();
 		void changeNodeNum(short num);
 
 
@@ -34,12 +34,15 @@ class BTree
 	private:
 		int order;
 		Node root;
+		int numOfNodes;
 	public:
 		BTree();
 		~Btree();
+		short incrementNum();
+		short decrementNum();
 		void incrementOrder();
 		void decrementOrder();
-		int getOrder();
+		short getOrder();
 		bool checkLeaf(Node temp);
 }
 
