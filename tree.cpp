@@ -60,3 +60,8 @@ void Node::setVal(short num)
 	if()
 
 }
+
+short Node::getNodeNum() { return nodeNum; }
+
+void Node::changeNodeNum(short num) { nodeNum = num; return; }
+
