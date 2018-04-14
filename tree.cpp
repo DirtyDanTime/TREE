@@ -45,9 +45,12 @@ short Node::getVal(short loc)
 				return numFour;
 			break;
 		default:
+			cout << endl << "Desired node value doesn't exist!" << endl;
 			return;
 			break;
 	}
+
+	cout << endl << "Desired node value NULL!" << endl;
 
 	return;
 }
