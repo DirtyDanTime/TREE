@@ -31,9 +31,8 @@ class Node
 class BTree
 {
 	private:
-		BTree *tree;
 		int order;
-		Node *root;
+		Node root;
 		int numOfNodes;
 		friend class Node;
 	public:
