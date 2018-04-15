@@ -30,35 +30,6 @@ Node::~Node()
 	}
 }
 
-/*{
-	switch (loc)
-	{
-		case 1:
-			if(values[0] != nullptr)
-				return numOne;
-			break;
-		case 2:
-			if(values[1] != NULL)
-				return numTwo;
-			break;
-		case 3:
-			if(values[2] != NULL)
-				return numThree;
-			break;
-		case 4:
-			if(values[3] != NULL)
-				return numFour;
-			break;
-		default:
-			cout << endl << "Desired node value doesn't exist!" << endl;
-			return;
-			break;
-	}
-
-	cout << endl << "Desired node value NULL!" << endl;
-
-	return NULL;
-}*/
 
 
 short Node::getNodeNum() { return nodeNum; }
@@ -187,4 +158,16 @@ short BTree::getOrder() { return order; }
 
 bool BTree::checkLeaf(Node temp) { return temp.getLeaf(); }
 
+short BTree::split(Node node, short num)
+{
+	int mid = 0;
+
+	if(num == -1)
+	{
+		mid = node.getVal(2);
+		node.	
+	}
+
+	return mid;
+}
 //hello
