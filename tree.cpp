@@ -163,7 +163,9 @@ short BTree::split(Node *node, short num)
 {
 	short mid, temp, i;
 
-	Node x, y, z;
+	Node *x = new Node(*tree);
+	Node *y = new Node(*tree);
+	Node *z = new Node(*tree);
 
 	if(num == -1)
 	{
@@ -199,7 +201,7 @@ short BTree::split(Node *node, short num)
 	{
 		z = node->children[num];
 		mid = z->values[2];
-		temp = z->values[3]
+		temp = z->values[3];
 		z->values[2] = temp;
 		z->values[3] = 0;
 		z->stored--;
