@@ -11,6 +11,7 @@ class Node
 	private:
 		short nodeNum;
 		short level;
+		short stored;
 		short *values;
 		bool isRoot;
 		bool isLeaf;
@@ -45,6 +46,7 @@ class BTree
 		Node getRoot();
 		void setRoot(Node *temp);
 		void insert(short num);
+		short split(Node node, short num);
 
 };
 
