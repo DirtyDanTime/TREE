@@ -83,18 +83,18 @@ void BTree::insert(short num)
 	}
 	else
 	{
-		if(x->isLeaf && x->stored = 4)
+		if(x->isLeaf && x->stored == 4)
 		{
 			temp = split(x, -1);
 			x = root;
-			for(i = 0, i < (x->stored); i++)
+			for(i = 0; i < (x->stored); i++)
 			{
 				if((num > x->values[i]) && (num < x->values[i+1]))
 				{
 					i++;
 					break;
 				}
-				else if ( a < x->values[0])
+				else if ( num < x->values[0])
 				{
 					break;
 				}
@@ -111,7 +111,7 @@ void BTree::insert(short num)
 			{
 				for(i = 0; i < (x->stored); i++)
 				{
-					if((num > x->values[i]) ** (num < x->values[i+1]))
+					if((num > x->values[i]) && (num < x->values[i+1]))
 					{
 						i++;
 						break;
@@ -125,11 +125,11 @@ void BTree::insert(short num)
 						continue;
 					}
 				}
-				if((x->children[i])->num == 4)
+				if((x->children[i])->stored == 4)
 				{
 					temp = split(x,i);
-					x->values[x->num] = temp;
-					x->num++;
+					x->values[x->stored] = temp;
+					x->stored++;
 					continue;
 				}
 				else
@@ -139,9 +139,9 @@ void BTree::insert(short num)
 			}
 		}
 	}
-	x->values[x->num] = a;
-	sort(x->values, x->num);
-	x->num++;
+	x->values[x->stored] = num;
+	sort(x->values, x->stored);
+	x->stored++;
 }
 
 Node BTree::getRoot() { return *root; }
