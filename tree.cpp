@@ -20,6 +20,7 @@ Node::Node(BTree tree)
 	{
 		children[i] = NULL;
 	}
+	stored = 0;
 }
 
 Node::~Node()
@@ -28,16 +29,6 @@ Node::~Node()
 	{
 		delete children[i];
 	}
-}
-
-void Node::incrementStored() { stored++; return; }
-
-void Node::decrementStored() { stored--; return; }
-
-void Node::setVal(short val, short loc) 
-{ 
-	values[loc-1] = val; 
-	return; 
 }
 
 short Node::getNodeNum() { return nodeNum; }
@@ -170,15 +161,59 @@ bool BTree::checkLeaf(Node temp) { return temp.getLeaf(); }
 
 short BTree::split(Node *node, short num)
 {
-	short mid, temp;
+	short mid, temp, i;
+
+	Node x, y, z;
 
 	if(num == -1)
 	{
-		mid = node.getVal(2);
-		temp = node.getVal(3);
-		node.setVal(temp, 3);
-		node.setVal(0, 4);
-			
+		mid = node->values[2];
+		temp = node->values[3];
+		node->values[2] = temp;
+		node->values[3] = 0;
+		node->isLeaf = true;
+
+		for(i = 2; i < 4; i++)
+		{
+			x->values[i - 2] = node->values[i];
+			x->children[i - 2] = x->children[i];
+			x->stored++;
+			node->values[i] = 0;
+			node->stored--;
+		}
+
+		for(i = 0; i < 5; i++)
+		{
+			node->children[i] = NULL;
+		}
+
+		y->values[0] = mid;
+		y->children[y->stored] = node;
+		y->children[y->stored + 1] = x;
+		y->stored++;
+		y->isRoot = true;
+		y->isLeaf = false;
+		root = y;
+	}
+	else
+	{
+		z = node->children[num];
+		mid = z->values[2];
+		temp = z->values[3]
+		z->values[2] = temp;
+		z->values[3] = 0;
+		z->stored--;
+
+		for(i = 2; i < 4; i++)
+		{
+			x->values[i - 2] = z->values[i]; 
+			x->stored++;
+			z->values[i] = 0;
+			z->stored--;
+		}
+
+		node->children[num - 1] = z;
+		node->children[num + 1] = x;
 	}
 
 	return mid;

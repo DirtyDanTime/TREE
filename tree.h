@@ -20,9 +20,6 @@ class Node
 	public:
 		Node(BTree tree);
 		~Node();
-		void incrementStored();
-		void decrementStored();
-		void setVal(short val, short loc);
 		short getVal(short loc);
 		short getNodeNum();
 		void changeNodeNum(short num);
