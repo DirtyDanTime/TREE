@@ -9,6 +9,7 @@ class BTree;
 class Node
 {
 	private:
+		friend class BTree;
 		short nodeNum;
 		short level;
 		short stored;
@@ -37,6 +38,7 @@ class BTree
 		int order;
 		Node *root;
 		int numOfNodes;
+		friend class Node;
 	public:
 		BTree();
 		~BTree();
