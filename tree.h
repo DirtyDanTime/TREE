@@ -4,7 +4,7 @@
 #include <iostream>
 
 using namespace std;
-class BTree;
+/*class BTree;
 
 class Node
 {
@@ -49,7 +49,23 @@ class BTree
 		void insert(short num);
 		short split(Node *node, short num);
 
-};
+};*/
+
+struct Node
+{
+	short *values;
+	Node **children;
+	bool isLeaf;
+	short stored;
+}*root = NULL, *ptr = NULL, *x = NULL;
+
+Node * construct();
+
+void sort(short, *p, short n);
+
+short split(Node *node, short num);
+
+void insert(short num);
 
 #include "tree.cpp"
 

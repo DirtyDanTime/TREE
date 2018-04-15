@@ -4,13 +4,6 @@
 
 using namespace std;
 
-struct Node
-{
-	short *values;
-	Node **children;
-	bool isLeaf;
-	short stored;
-}*root = NULL, *ptr = NULL, *x = NULL;
 
 Node * construct()
 {
