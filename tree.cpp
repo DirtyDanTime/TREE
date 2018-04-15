@@ -30,7 +30,15 @@ Node::~Node()
 	}
 }
 
+void Node::incrementStored() { stored++; return; }
 
+void Node::decrementStored() { stored--; return; }
+
+void Node::setVal(short val, short loc) 
+{ 
+	values[loc-1] = val; 
+	return; 
+}
 
 short Node::getNodeNum() { return nodeNum; }
 
@@ -44,7 +52,9 @@ bool Node::getLeaf() { return isLeaf; }
 
 bool Node::getRoot() { return isRoot; }
 
+
 //Tree Functions
+
 
 BTree::BTree()
 {
@@ -158,14 +168,17 @@ short BTree::getOrder() { return order; }
 
 bool BTree::checkLeaf(Node temp) { return temp.getLeaf(); }
 
-short BTree::split(Node node, short num)
+short BTree::split(Node *node, short num)
 {
-	int mid = 0;
+	short mid, temp;
 
 	if(num == -1)
 	{
 		mid = node.getVal(2);
-		node.	
+		temp = node.getVal(3);
+		node.setVal(temp, 3);
+		node.setVal(0, 4);
+			
 	}
 
 	return mid;
