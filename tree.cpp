@@ -188,23 +188,57 @@ void insert(short num)
 
 Node * search(Node *node, short num)
 {
-	Node *temp;
-	temp = construct();
+	Node *found, *temp;
 
+	bool check1 = false;
+	bool check2 = false;
+
+	found = construct();
+	found->isLeaf = false;
+
+	temp = construct();
+	temp->isLeaf = false;
 
 	for(short i = 0; i < node->stored; i++)
 	{
 		if(node->values[i] == num)
-			return node;
+		{
+			found = node;
+			break;
+		}
+	}
+
+
+	if(found->isLeaf = true)
+		return found;
+	else
+	{
+		for(short i = 0; i < 5; i++)
+		{		
+			if(found->children[i] != NULL)
+				temp = search(found->children[i], num);
+			if(temp == NULL)
+				continue;
+			if(temp->isLeaf = true)
+				return temp;
+		}	
+
+
 	}
 
 	for(short i = 0; i < 5; i++)
 	{
 		if(node->children[i] != NULL)
 			temp = search(node->children[i], num);	
-
-		if(temp != NULL)
-			return temp;	
+		for(short j = 0; j < temp->stored; j++)
+		{
+			if(temp->values[i] == num)
+				check1 = true;
+		}
+		if(temp->isLeaf == true)
+			check2 = true;
+		if(check1 == true && check2 == true)
+			return temp;
 	}
 
 	temp = NULL;
