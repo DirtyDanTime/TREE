@@ -27,6 +27,16 @@ Node * construct()
 	return ptr;
 }
 
+void traverse(Node *p)
+{
+	for(int i = 0; i < p->stored; ++i)
+	{
+		traverse(p->children[i]);
+		cout << p->values[i];
+	}
+	traverse (p->children[p->stored-1]);
+	
+}
 void sort(short *p, short n)
 {
 	short temp;
