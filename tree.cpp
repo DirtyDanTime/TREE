@@ -22,13 +22,22 @@ Node * construct()
 
 void traverse(Node *p)
 {
-	for(int i = 0; i < p->stored; ++i)
-	{
-		traverse(p->children[i]);
-		cout << p->values[i];
-	}
-	traverse (p->children[p->stored-1]);
-	
+	 cout<<endl;
+    int i;
+    for (i = 0; i < p->stored; i++)
+    {
+        if (p->isLeaf == false)
+        {
+            traverse(p->children[i]);
+        }
+        cout << " " << p->values[i];
+    }
+    if (p->isLeaf == false)
+    {
+        traverse(p->children[i]);
+    }
+    cout<<endl;
+
 }
 void sort(short *p, short n)
 {
@@ -55,8 +64,8 @@ short split(Node *node, short num)
 	y->isLeaf = true;
 	if(num == -1)
 	{
-		mid = node->values[2];
-		node->values[2]=0;
+		mid = node->values[1];
+		node->values[1]=0;
 		node->stored--;
 		x = construct();
 		x->isLeaf = false;
@@ -85,8 +94,8 @@ short split(Node *node, short num)
 	else
 	{
 		z = node->children[num];
-		mid = z->values[2];
-		z->values[2] = 0;
+		mid = z->values[1];
+		z->values[1] = 0;
 		z->stored--;
 
 		for(i = 2; i < 4; i++)
