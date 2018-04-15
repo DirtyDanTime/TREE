@@ -16,7 +16,7 @@ Node::Node(BTree tree)
 	level = tree.getOrder();
 	nodeNum = tree.incrementNum();
 	children = new Node *[5];
-	for(int i = 0; i < 6; i++)
+	for(int i = 0; i < 5; i++)
 	{
 		children[i] = NULL;
 	}
@@ -24,7 +24,7 @@ Node::Node(BTree tree)
 
 Node::~Node()
 {
-	for(int i = 0; i < 6; i++)
+	for(int i = 0; i < 5; i++)
 	{
 		delete children[i];
 	}
