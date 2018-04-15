@@ -167,5 +167,51 @@ void insert(short num)
 	x->stored++;
 }
 
+Node * search(Node *node, short num)
+{
+	Node *temp;
+	temp = construct();
+
+
+	for(short i = 0; i < node->stored; i++)
+	{
+		if(node->values[i] == num)
+			return node;
+	}
+
+	for(short i = 0; i < 5; i++)
+	{
+		if(node->children[i] != NULL)
+			temp = search(node->children[i], num);	
+
+		if(temp != NULL)
+			return temp;	
+	}
+
+	temp = NULL;
+
+	return temp;
+}
+
+void deletion(short num)
+{
+	Node *loc;
+
+	loc = search(root, num);
+
+	if(loc == NULL)
+		return;
+	else
+	{
+		for(short i = 0; i < loc->stored; i++)
+		{
+			
+		}
+	}
+
+
+	return;
+}
+
 
 //hello

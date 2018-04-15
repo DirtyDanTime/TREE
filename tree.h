@@ -61,11 +61,17 @@ struct Node
 
 Node * construct();
 
-void sort(short, *p, short n);
+void sort(short *p, short n);
 
 short split(Node *node, short num);
 
 void insert(short num);
+
+Node * search(Node *node, short num);
+
+void deletion(short num);
+
+void merge(Node *node, short num);
 
 #include "tree.cpp"
 
