@@ -77,9 +77,26 @@ bool Node::getRoot() { return isRoot; }
 
 BTree::BTree()
 {
+	tree = new BTree();
 	order = 0;
 	root = NULL;
 	numOfNodes = 0;
+}
+
+void sort(short *p, short n)
+{
+	short i, j, temp;
+	for(i = 0; i < n; i++)
+	{
+		for(j = i; j <= n; j++)
+		{	if(p[i] > p[j])
+			{
+				temp = p[i];
+				p[i] = p[j];
+				p[j] = temp;
+			}
+		}
+	}
 }
 
 void BTree::insert(short num)
@@ -87,6 +104,73 @@ void BTree::insert(short num)
 	short i, temp;
 	Node *x = new Node(*tree);
 	x = root;
+
+	if(x == NULL)
+	{
+		root = new Node(*tree);
+		x = root;
+	}
+	else
+	{
+		if(x->isLeaf && x->stored = 4)
+		{
+			temp = split(x, -1);
+			x = root;
+			for(i = 0, i < (x->stored); i++)
+			{
+				if((num > x->values[i]) && (num < x->values[i+1]))
+				{
+					i++;
+					break;
+				}
+				else if ( a < x->values[0])
+				{
+					break;
+				}
+				else
+				{
+					continue;
+				}
+			}
+			x = x->children[i];
+		}
+		else
+		{
+			while (x->isLeaf == false)
+			{
+				for(i = 0; i < (x->stored); i++)
+				{
+					if((num > x->values[i]) ** (num < x->values[i+1]))
+					{
+						i++;
+						break;
+					}
+					else if(num < x->values[0])
+					{
+						break;
+					}
+					else
+					{
+						continue;
+					}
+				}
+				if((x->children[i])->num == 4)
+				{
+					temp = split(x,i);
+					x->values[x->num] = temp;
+					x->num++;
+					continue;
+				}
+				else
+				{
+					x = x->children[i];
+				}
+			}
+		}
+	}
+	x->values[x->num] = a;
+	sort(x->values, x->num);
+	x->num++;
 }
 
 Node BTree::getRoot() { return *root; }
