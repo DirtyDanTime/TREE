@@ -1,4 +1,3 @@
-#include "tree.h"
 
 
 #include <iostream>
@@ -21,9 +20,20 @@ Node * construct()
 	}
 	return ptr;
 }
-
-void insert(short num)
+LeafNode * leaf()
 {
+	p = new LeafNode;
+	p->values = new short[4];
+	p->next = new LeafNode;
+	p->isLeaf = true;
+	p->stored = 0;
+	return p;
+}
+
+void insert(short n)
+{
+
+	LeafNode *p = leaf();
 	if(root == NULL)
 	{
 		root = construct();
@@ -31,11 +41,11 @@ void insert(short num)
 	}
 	else
 	{
-		ptr = search(x, num);
+		p = search(x, n);
 	}
 	if(ptr->stored < 3)
 	{
-		ptr->values[ptr->stored] = num;
+		ptr->values[ptr->stored] = n;
 		ptr->stored++;
 		sort(ptr->values, ptr->stored);
 	}
@@ -44,15 +54,27 @@ void insert(short num)
 		if()
 	}
 
-<<<<<<< HEAD
-=======
-	
 }
 
-Node * search(Node *node, short num)
+LeafNode * leafSwap(Node *node)
+{
+	LeafNode *l = leaf();
+	for(int i = 0; i < node->stored; i++)
+	{
+		l->values[i] = node->values[i];
+	}
+	l->stored = node->stored;
+	l->next = NULL;
+	return l;
+}
+
+LeafNode * search(Node *node, short num)
 {
 	if(node->isLeaf == true)
-		return node;
+	{
+		LeafNode *n = leafSwap(node);
+		return n;
+	}
 
 	switch (num)
 	{
@@ -60,14 +82,15 @@ Node * search(Node *node, short num)
 			return search(node->children[0], num);
 			break;
 		case (node->values[0] < num && num < node->values[1]):
-			return search(node->children[1]);
+			return search(node->children[1], num);
 			break;
 		case (node->values[1] < num && num < node->values[2]):
-			return search(node->children[2]);
+			return search(node->children[2], num);
 			break;
 		case (node->values[2] < num):
-			return search(node->children[3]);
+			return search(node->children[3], num);
+			break;
+		default:
 			break;
 	}
->>>>>>> 80ef448c49a935371d1afd02826220cf9a48c0d5
 }

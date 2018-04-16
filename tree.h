@@ -65,7 +65,11 @@ struct LeafNode
 	LeafNode *next;
 	bool isLeaf;
 	short stored;
-}*root = NULL, *ptr = NULL, *x = NULL;
+
+}*p = NULL;
+LeafNode * leaf();
+
+LeafNode * leafSwap(Node *n);
 
 Node * construct();
 
@@ -75,13 +79,13 @@ short split(Node *node, short num);
 
 void insert(short num);
 
-Node * search(Node *node, short num);
+LeafNode * search(Node *node, short num);
 
 void deletion(short num);
 
 void merge(Node *node, short num);
 
-#include "tree.cpp"
+#include "thedream.cpp"
 
 //hello
 
