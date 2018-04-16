@@ -10,7 +10,6 @@ using namespace std;
 Node * construct()
 {
 	ptr = new Node;
-	ptr->parent = NULL;
 	ptr->values = new short[4];
 
 	ptr->children = new Node *[5];
@@ -44,7 +43,11 @@ void insert(short num)
 	{
 		if()
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> parent of 95a560d... Merge branch 'master' of https://github.com/ImaBullDozer/TREE
 }
 
 Node * search(short num)
@@ -54,6 +57,7 @@ Node * search(short num)
 
 	search(root, NULL, num);
 
+<<<<<<< HEAD
 }
 
 Node * subSearch(Node *node, Node *par, short num)
@@ -62,10 +66,19 @@ Node * subSearch(Node *node, Node *par, short num)
 	{
 		node->parent = par;
 		return node;
+=======
+LeafNode * search(Node *node, short num)
+{
+	if(node->isLeaf == true)
+	{
+		LeafNode *n = leafSwap(node);
+		return n;
+>>>>>>> parent of 95a560d... Merge branch 'master' of https://github.com/ImaBullDozer/TREE
 	}
 
 	switch (num)
 	{
+<<<<<<< HEAD
 		if(num < node->values[0])
 		{	
 			return search(node->children[0], node, num);
@@ -111,4 +124,21 @@ void merge(Node *node, short num)
 
 
 	return;
+=======
+		case (num < node->values[0]):
+			return search(node->children[0], num);
+			break;
+		case (node->values[0] < num && num < node->values[1]):
+			return search(node->children[1], num);
+			break;
+		case (node->values[1] < num && num < node->values[2]):
+			return search(node->children[2], num);
+			break;
+		case (node->values[2] < num):
+			return search(node->children[3], num);
+			break;
+		default:
+			break;
+	}
+>>>>>>> parent of 95a560d... Merge branch 'master' of https://github.com/ImaBullDozer/TREE
 }
