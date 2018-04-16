@@ -15,21 +15,21 @@ Node * construct()
 	ptr->children = new Node *[4];
 	ptr->isLeaf = true;
 	ptr->stored = 0;
+	ptr->next = NULL;
 	for(short i = 0; i < 4; i++)
 	{
 		ptr->children[i] = NULL;
 	}
 	return ptr;
 }
-LeafNode * leaf()
-{
+/*{
 	p = new LeafNode;
 	p->values = new short[3];
 	p->next = new LeafNode;
 	p->isLeaf = true;
 	p->stored = 0;
 	return p;
-}
+}*/
 
 void sort(short *p, short n)
 {
@@ -82,20 +82,30 @@ void insert(short n)
 
 }
 
-void split(Node *node, short *num)
+void split(LeafNode *node, short *num)
 {
 	Node *parent = node->parent;
 	if(parent->children[3] != NULL)
 	{
-
+		
 	}
 	else
 	{
 		Node *leftNode = construct();
+		LeafNode *rightNode = construct();
 		leftNode->parent = node->parent;
 		leftNode->values[0] = num[0];
 		leftNode->values[1] = num[1];
-		leftNode->children[0]
+		rightNode->parent = node->parent;
+		rightNode->values[0] = num[2];
+		rightNode->values[1] = num[3];
+		parent->values[parent->stored] = num[1];
+		parent->stored++;
+		sort(parent->values, parent->stored);
+		for(int i = 0; i < parent->stored+1; i++)
+		{
+			if(parent->children[i]->values[0] )
+		}
 	}
 
 }

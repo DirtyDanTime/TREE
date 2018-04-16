@@ -56,11 +56,12 @@ struct Node
 	Node *parent;
 	short *values;
 	Node **children;
+	Node *next;
 	bool isLeaf;
 	short stored;
 }*root = NULL, *ptr = NULL, *x = NULL;
 
-struct LeafNode
+/*struct LeafNode
 {
 	Node *parent;
 	short *values;
@@ -68,10 +69,10 @@ struct LeafNode
 	bool isLeaf;
 	short stored;
 
-}*p = NULL;
-LeafNode * leaf();
+}*p = NULL;*/
+//LeafNode * leaf();
 
-LeafNode * leafSwap(Node *n);
+//LeafNode * leafSwap(Node *n);
 
 Node * construct();
 
