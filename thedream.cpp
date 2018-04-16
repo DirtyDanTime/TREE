@@ -128,15 +128,48 @@ void parentDelete(Node *node, short num)
 	return;
 }
 
-void merge(Node *node, short num)
+void merge(LeafNode *node, short num)
 {
-	Node *temp;
-
-	temp = construct();
-
+	Node *temp = construct();
+	//Node *child = construct(); 
 	temp = node->parent;
+	short child = 0; 
+	bool place = false;
+	short childNo = 0;
 
-		
+	for(short i = 0; i < 4; i++)
+	{
+		child = temp->children[i]->values[0];
+		if(child == num)
+			place = true;
+		if(place == true)
+		{
+			childNo = i;
+			break;
+		}
+	}	
+
+	switch (childNo)
+	{
+		case 0:
+			if(temp->children[1]->stored == 3)
+			{
+				temp->children[0]->values[1] = temp->values[0];
+				temp->values[0] = temp->children[1]->values[0];
+				temp->children[1]->values[0] = temp->children[1]->values[1];
+				temp->children[1]->values[1] = temp->children[1]->values[2];
+				temp->children[1]->values[2] = temp->children[1]->values[3];
+
+				return;
+			}
+			else if(temp->children[1]->stored <= 2)
+			{
+				temp->values[0]
+			}
+			break;
+	}
+
+	
 
 	return;
 
@@ -144,7 +177,8 @@ void merge(Node *node, short num)
 
 void deletion(short num)
 {
-   LeafNode *temp;
+    LeafNode *temp;
+    
 
     temp = search(num);
 
