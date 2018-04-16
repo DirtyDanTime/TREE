@@ -134,7 +134,7 @@ void merge(Node *node, short num)
 
 	temp = node->parent;
 
-
+		
 
 	return;
 }
