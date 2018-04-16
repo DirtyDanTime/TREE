@@ -57,7 +57,8 @@ void insert(short n)
 
 }
 
-//hey
+
+
 LeafNode * leafSwap(Node *node)
 {
 	LeafNode *l = leaf();
