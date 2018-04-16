@@ -47,6 +47,8 @@ void sort(short *p, short n)
 	}
 }
 
+//hey tyler
+
 void insert(short n)
 {
 
