@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <stdio.h>
 
@@ -52,11 +50,7 @@ void sort(short *p, short n)
 void insert(short n)
 {
 
-<<<<<<< HEAD
 	Node *p = construct();
-=======
-	Node *p = leaf();
->>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 	if(root == NULL)
 	{
 		root = construct();
@@ -216,7 +210,6 @@ void split(Node *node, Node *last, short *num)
 	}
 	else
 	{
-<<<<<<< HEAD
 
 		Node *newNode = construct();
 		Node *newRoot = construct();
@@ -265,44 +258,10 @@ void split(Node *node, Node *last, short *num)
 			newRoot->values[0] = num[1];
 			newRoot->children[0] = node;
 			newRoot->children[1] = newNode;
-=======
-		Node *leftNode = construct();
-		Node *rightNode = construct();
-		leftNode->parent = node->parent;
-		leftNode->values[0] = num[0];
-		leftNode->values[1] = num[1];
-		rightNode->parent = node->parent;
-		rightNode->values[0] = num[2];
-		rightNode->values[1] = num[3];
-		parent->values[parent->stored] = num[1];
-		parent->stored++;
-		sort(parent->values, parent->stored);
-		for(int i = 0; i < parent->stored+1; i++)
-		{
-			if(parent->children[i]->values[0] )
-		}
->>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 	}
 
 }
 
-<<<<<<< HEAD
-
-
-/*LeafNode * leafSwap(Node *node)
-{
-	LeafNode *l = leaf();
-	for(int i = 0; i < node->stored; i++)
-	{
-		l->values[i] = node->values[i];
-	}
-	l->stored = node->stored;
-	l->next = NULL;
-	return l;
-}*/
-
-=======
->>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 void parentDelete(Node *node, short num)
 {
 	if(node != NULL)
