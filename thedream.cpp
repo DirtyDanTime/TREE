@@ -52,7 +52,11 @@ void sort(short *p, short n)
 void insert(short n)
 {
 
+<<<<<<< HEAD
 	Node *p = construct();
+=======
+	Node *p = leaf();
+>>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 	if(root == NULL)
 	{
 		root = construct();
@@ -212,6 +216,7 @@ void split(Node *node, Node *last, short *num)
 	}
 	else
 	{
+<<<<<<< HEAD
 
 		Node *newNode = construct();
 		Node *newRoot = construct();
@@ -260,10 +265,28 @@ void split(Node *node, Node *last, short *num)
 			newRoot->values[0] = num[1];
 			newRoot->children[0] = node;
 			newRoot->children[1] = newNode;
+=======
+		Node *leftNode = construct();
+		Node *rightNode = construct();
+		leftNode->parent = node->parent;
+		leftNode->values[0] = num[0];
+		leftNode->values[1] = num[1];
+		rightNode->parent = node->parent;
+		rightNode->values[0] = num[2];
+		rightNode->values[1] = num[3];
+		parent->values[parent->stored] = num[1];
+		parent->stored++;
+		sort(parent->values, parent->stored);
+		for(int i = 0; i < parent->stored+1; i++)
+		{
+			if(parent->children[i]->values[0] )
+		}
+>>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 	}
 
 }
 
+<<<<<<< HEAD
 
 
 /*LeafNode * leafSwap(Node *node)
@@ -278,6 +301,8 @@ void split(Node *node, Node *last, short *num)
 	return l;
 }*/
 
+=======
+>>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 void parentDelete(Node *node, short num)
 {
 	if(node != NULL)
@@ -292,15 +317,48 @@ void parentDelete(Node *node, short num)
 	return;
 }
 
-void merge(Node *node, short num)
+void merge(LeafNode *node, short num)
 {
-	Node *temp;
-
-	temp = construct();
-
+	Node *temp = construct();
+	//Node *child = construct(); 
 	temp = node->parent;
+	short child = 0; 
+	bool place = false;
+	short childNo = 0;
 
-		
+	for(short i = 0; i < 4; i++)
+	{
+		child = temp->children[i]->values[0];
+		if(child == num)
+			place = true;
+		if(place == true)
+		{
+			childNo = i;
+			break;
+		}
+	}	
+
+	switch (childNo)
+	{
+		case 0:
+			if(temp->children[1]->stored == 3)
+			{
+				temp->children[0]->values[1] = temp->values[0];
+				temp->values[0] = temp->children[1]->values[0];
+				temp->children[1]->values[0] = temp->children[1]->values[1];
+				temp->children[1]->values[1] = temp->children[1]->values[2];
+				temp->children[1]->values[2] = temp->children[1]->values[3];
+
+				return;
+			}
+			else if(temp->children[1]->stored <= 2)
+			{
+				temp->values[0]
+			}
+			break;
+	}
+
+	
 
 	return;
 
@@ -308,7 +366,8 @@ void merge(Node *node, short num)
 
 void deletion(short num)
 {
-   LeafNode *temp;
+
+   Node *temp;
 
     temp = search(num);
 
@@ -343,9 +402,9 @@ void deletion(short num)
 
 }
 
-LeafNode * search(short num)
+Node * search(short num)
 {
-	LeafNode *temp = leaf();
+	Node *temp = leaf();
 	temp = subSearch(root, NULL, num);
 	bool exist = false;
 
@@ -361,7 +420,7 @@ LeafNode * search(short num)
 		return NULL;
 }
 
-LeafNode * subSearch(Node *node, Node *par, short num)
+Node * subSearch(Node *node, Node *par, short num)
 {
 	if(node->isLeaf == true)
 	{

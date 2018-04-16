@@ -50,7 +50,7 @@ class BTree
 		short split(Node *node, short num);
 
 };*/
-
+//template <typename T>
 struct Node
 {
 	Node *parent;
@@ -82,13 +82,19 @@ void split(Node *node, Node *last, short num);
 
 void insert(short num);
 
+<<<<<<< HEAD
 //LeafNode * search(short num);
 
 //LeafNode * subSearch(Node *node, Node *par, short *num);
+=======
+Node * search(short num);
+
+Node * subSearch(Node *node, Node *par, short num);
+>>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 
 void deletion(short num);
 
-void merge(Node *node, short num);
+void merge(LeafNode *node, short num);
 
 #include "thedream.cpp"
 
