@@ -59,6 +59,14 @@ struct Node
 	short stored;
 }*root = NULL, *ptr = NULL, *x = NULL;
 
+struct LeafNode
+{
+	short *values;
+	LeafNode *next;
+	bool isLeaf;
+	short stored;
+}*root = NULL, *ptr = NULL, *x = NULL;
+
 Node * construct();
 
 void sort(short *p, short n);
