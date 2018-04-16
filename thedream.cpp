@@ -152,17 +152,17 @@ void deletion(short num)
         {
             temp->values[0] = temp->values[1];
             temp->values[1] = temp->values[2];
-            temp->values[2] = NULL;
+            temp->values[2] = 0;
         }
 
         if(temp->values[1] == num)
         {
             temp->values[1] = temp->values[2];
-            temp->values[2] = NULL;
+            temp->values[2] = 0;
         }
 
         else
-            temp->values[2] = NULL;
+            temp->values[2] = 0;
 
         temp->stored -= 1;
 
