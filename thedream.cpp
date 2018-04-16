@@ -72,20 +72,29 @@ Node * search(Node *node, Node *par, short num)
 	}
 }
 
-Node * mergeSearch(Node *parent, short num)
+void parentDelete(Node *node, short num)
 {
-	Node *temp;
-
-	temp = search(root, num);
-
-	for(short i = 0; i < 4; i++)
+	if(node != NULL)
 	{
-		if(parent->children[i] == )
-	}	
+		for(short i = 0; i < node->stored; i++)
+			if(node->values[i] == num) { node->values[i] = 0;}
+	}
+	else { return; }
+
+	parentDelete(node->parent, num);
+	
+	return;
 }
 
 void merge(Node *node, short num)
 {
+	Node *temp;
+
+	temp = construct();
+
+	temp = node->parent;
+
+
 
 	return;
 }
