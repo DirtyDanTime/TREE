@@ -112,10 +112,34 @@ void split(LeafNode *node, short *num)
 
 void parentDelete(Node *node, short num)
 {
+	bool deleted = false;
+
 	if(node != NULL)
 	{
 		for(short i = 0; i < node->stored; i++)
-			if(node->values[i] == num) { node->values[i] = 0;}
+		{
+			if(node->values[i] == num)
+			{
+				node->values[i] = 0;
+				node->stored--;
+				deleted = true;
+			}
+
+			if(deleted == true)
+			{
+				for(short j = i; j < 4; j++)
+				{
+					if(j == 3)
+					{
+						parentDelete(node->parent, num);
+						return;
+					}
+					else
+						node->values[j] = node->values[j+1];
+				}
+			}
+		}
+
 	}
 	else { return; }
 
@@ -132,6 +156,7 @@ void merge(LeafNode *node, short num)
 	short child = 0; 
 	bool place = false;
 	short childNo = 0;
+	//short compare = node->values[0];
 
 	for(short i = 0; i < 4; i++)
 	{
@@ -163,6 +188,12 @@ void merge(LeafNode *node, short num)
 				temp->values[0]
 			}
 			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
 	}
 
 	
@@ -174,9 +205,11 @@ void merge(LeafNode *node, short num)
 void deletion(short num)
 {
 
-   Node *temp;
+    Node *temp;
 
     temp = search(num);
+
+    short first = 0;
 
     if(temp != NULL)
     {
@@ -200,7 +233,10 @@ void deletion(short num)
 
         if(temp->stored < 2)
         {
-            merge(temp, num);
+        	first = temp->values[0];
+        	parentDelete(temp, num);
+            merge(temp, first);
+            return;
         }
 
         parentDelete(temp, num);
