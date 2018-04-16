@@ -81,7 +81,9 @@ short split(Node *node, short num);
 
 void insert(short num);
 
-LeafNode * search(Node *node, Node* par, short num);
+LeafNode * search(short num);
+
+LeafNode * subSearch(Node *node, Node *par, short num);
 
 void deletion(short num);
 
