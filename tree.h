@@ -78,13 +78,13 @@ Node * construct();
 
 void sort(short *p, short n);
 
-short split(Node *node, short num);
+void split(Node *node, Node *last, short num);
 
 void insert(short num);
 
-LeafNode * search(short num);
+//LeafNode * search(short num);
 
-LeafNode * subSearch(Node *node, Node *par, short num);
+//LeafNode * subSearch(Node *node, Node *par, short *num);
 
 void deletion(short num);
 

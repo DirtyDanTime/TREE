@@ -52,7 +52,7 @@ void sort(short *p, short n)
 void insert(short n)
 {
 
-	LeafNode *p = leaf();
+	Node *p = construct();
 	if(root == NULL)
 	{
 		root = construct();
@@ -60,7 +60,7 @@ void insert(short n)
 	}
 	else
 	{
-		p = search(x, n);
+		p = search(n);
 	}
 	if(ptr->stored < 3)
 	{
@@ -76,43 +76,197 @@ void insert(short n)
 			four[i] = ptr->values[i];
 		}
 		four[3] = n;
-		sort(four, 4)
-		split(ptr, four)
+		sort(four, 4);
+		split(ptr, NULL, *four);
 	}
 
 }
 
-void split(LeafNode *node, short *num)
+void split(Node *node, Node *last, short *num)
 {
 	Node *parent = node->parent;
-	if(parent->children[3] != NULL)
+
+	if(parent != NULL)
 	{
-		
+		if(last == NULL) {
+			Node *newNode = construct();
+			node->values[0] = num[0];
+			node->values[1] = num[1];
+			node->values[2] = 0;
+			newNode->parent = node->parent;
+			newNode->values[0] = num[2];
+			newNode->values[1] = num[3];
+			node->next = newNode;
+			
+
+			if(parent->stored == 3)
+			{
+				short *four = new short[4];
+				for(int i = 0; i < 3; i++)
+				{
+					four[i] = parent->values[i];
+				}
+				four[3] = num[1];
+				sort(four, 4);
+				split(parent, newNode, four);
+			}
+			else
+			{
+				parent->values[parent->stored] = num[1];
+				parent->stored++;
+				sort(parent->values, parent->stored);
+			
+				for(int i = 0; i < parent->stored+1; i++)
+				{
+					if(parent->children[i]->values[0] == node->values[0])
+					{
+						parent->children[i] = node;
+						for(int j = parent->stored-1; j > i; j--)
+						{
+							parent->children[j+1] = parent->children[j];
+						}
+						parent->children[i+1] = newNode;
+						break;
+					}
+				}
+			}
+
+		}
+		else
+		{
+			Node *newNode = construct();
+			if(last->values[0] > node->children[0]->values[0] && last->values[0] < node->children[1]->values[0])
+			{
+				newNode->children[0] = node->children[1];
+				newNode->children[1] = node->children[2];
+				newNode->children[2] = node->children[3];
+				node->children[1] = last;
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			else if(last->values[0] > node->children[1]->values[0] && last->values[0] < node->children[2]->values[0])
+			{
+				newNode->children[0] = last;
+				newNode->children[1] = node->children[2];
+				newNode->children[2] = node->children[3];
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			else if(last->values[0] > node->children[2]->values[0] && last->values[0] < node->children[3]->values[0])
+			{
+				newNode->children[0] = node->children[2];
+				newNode->children[1] = last;
+				newNode->children[2] = node->children[3];
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			else if(last->values[0] > node->children[3]->values[0])
+			{
+				newNode->children[0] = node->children[2];
+				newNode->children[1] = node->children[3];
+				newNode->children[2] = last;
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			node->values[0] = num[0];
+			node->values[1] = 0;
+			node->values[2] = 0;
+			node->stored = 1;
+			newNode->parent = parent;
+			newNode->values[0] = num[2];
+			newNode->values[1] = num[3];
+			newNode->stored = 2;
+			if(parent->stored == 3)
+			{
+				short *four = new short[4];
+				for(int i = 0; i < 3; i++)
+				{
+					four[i] = parent->values[i];
+				}
+				four[3] = num[1];
+				sort(four, 4);
+
+				split(parent, newNode, four);
+			}
+			else
+			{
+				parent->values[parent->stored] = num[1];
+				parent->stored++;
+				sort(parent->values, parent->stored);
+			
+				for(int i = 0; i < parent->stored+1; i++)
+				{
+					if(parent->children[i]->values[0] == node->values[0])
+					{
+						for(int j = parent->stored-1; j > i; j--)
+						{
+							parent->children[j+1] = parent->children[j];
+						}
+						parent->children[i+1] = newNode;
+						break;
+					}
+				}
+			}
+
+		}
 	}
 	else
 	{
-		Node *leftNode = construct();
-		LeafNode *rightNode = construct();
-		leftNode->parent = node->parent;
-		leftNode->values[0] = num[0];
-		leftNode->values[1] = num[1];
-		rightNode->parent = node->parent;
-		rightNode->values[0] = num[2];
-		rightNode->values[1] = num[3];
-		parent->values[parent->stored] = num[1];
-		parent->stored++;
-		sort(parent->values, parent->stored);
-		for(int i = 0; i < parent->stored+1; i++)
-		{
-			if(parent->children[i]->values[0] )
-		}
+
+		Node *newNode = construct();
+		Node *newRoot = construct();
+			if(last->values[0] > node->children[0]->values[0] && last->values[0] < node->children[1]->values[0])
+			{
+				newNode->children[0] = node->children[1];
+				newNode->children[1] = node->children[2];
+				newNode->children[2] = node->children[3];
+				node->children[1] = last;
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			else if(last->values[0] > node->children[1]->values[0] && last->values[0] < node->children[2]->values[0])
+			{
+				newNode->children[0] = last;
+				newNode->children[1] = node->children[2];
+				newNode->children[2] = node->children[3];
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			else if(last->values[0] > node->children[2]->values[0] && last->values[0] < node->children[3]->values[0])
+			{
+				newNode->children[0] = node->children[2];
+				newNode->children[1] = last;
+				newNode->children[2] = node->children[3];
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			else if(last->values[0] > node->children[3]->values[0])
+			{
+				newNode->children[0] = node->children[2];
+				newNode->children[1] = node->children[3];
+				newNode->children[2] = last;
+				node->children[2] = NULL;
+				node->children[3] = NULL;
+			}
+			node->parent = newRoot;
+			node->values[0] = num[0];
+			node->values[1] = 0;
+			node->values[2] = 0;
+			node->stored = 1;
+			newNode->parent = newRoot;
+			newNode->values[0] = num[2];
+			newNode->values[1] = num[3];
+			newNode->stored = 2;
+			newRoot->values[0] = num[1];
+			newRoot->children[0] = node;
+			newRoot->children[1] = newNode;
 	}
 
 }
 
 
 
-LeafNode * leafSwap(Node *node)
+/*LeafNode * leafSwap(Node *node)
 {
 	LeafNode *l = leaf();
 	for(int i = 0; i < node->stored; i++)
@@ -122,7 +276,7 @@ LeafNode * leafSwap(Node *node)
 	l->stored = node->stored;
 	l->next = NULL;
 	return l;
-}
+}*/
 
 void parentDelete(Node *node, short num)
 {
