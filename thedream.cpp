@@ -10,12 +10,12 @@ Node * construct()
 {
 	ptr = new Node;
 	ptr->parent = NULL;
-	ptr->values = new short[4];
+	ptr->values = new short[3];
 
-	ptr->children = new Node *[5];
+	ptr->children = new Node *[4];
 	ptr->isLeaf = true;
 	ptr->stored = 0;
-	for(short i = 0; i < 5; i++)
+	for(short i = 0; i < 4; i++)
 	{
 		ptr->children[i] = NULL;
 	}
@@ -24,11 +24,27 @@ Node * construct()
 LeafNode * leaf()
 {
 	p = new LeafNode;
-	p->values = new short[4];
+	p->values = new short[3];
 	p->next = new LeafNode;
 	p->isLeaf = true;
 	p->stored = 0;
 	return p;
+}
+
+void sort(short *p, short n)
+{
+	short temp;
+	for(short i = 0; i < n; i++)
+	{
+		for(short j = i; j <= n; j++)
+		{	if(p[i] > p[j])
+			{
+				temp = p[i];
+				p[i] = p[j];
+				p[j] = temp;
+			}
+		}
+	}
 }
 
 void insert(short n)
@@ -42,7 +58,7 @@ void insert(short n)
 	}
 	else
 	{
-		p = search(n);
+		p = search(x, n);
 	}
 	if(ptr->stored < 3)
 	{
@@ -52,7 +68,32 @@ void insert(short n)
 	}
 	else
 	{
-		if()
+		short *four = new short[4];
+		for(int i = 0; i < 3; i++)
+		{
+			four[i] = ptr->values[i];
+		}
+		four[3] = n;
+		sort(four, 4)
+		split(ptr, four)
+	}
+
+}
+
+void split(Node *node, short *num)
+{
+	Node *parent = node->parent;
+	if(parent->children[3] != NULL)
+	{
+
+	}
+	else
+	{
+		Node *leftNode = construct();
+		leftNode->parent = node->parent;
+		leftNode->values[0] = num[0];
+		leftNode->values[1] = num[1];
+		leftNode->children[0]
 	}
 
 }
@@ -96,6 +137,7 @@ void merge(Node *node, short num)
 
 
 	return;
+<<<<<<< HEAD
 }
 void deletion(short num)
 {
@@ -173,4 +215,6 @@ LeafNode * subSearch(Node *node, Node *par, short num)
 		return subSearch(node->children[3], node, num);
 
 >>>>>>> 3ede8a5d9d4be7cac31718621a8419e405cf726d
+=======
+>>>>>>> b5eb1a5f7c0fb3b3ce3f19b931356ab5b9845a63
 }
