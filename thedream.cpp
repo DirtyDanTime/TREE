@@ -97,3 +97,39 @@ void merge(Node *node, short num)
 
 	return;
 }
+
+void deletion(short num)
+{
+   LeafNode *temp;
+
+    temp = search(num);
+
+    if(temp != NULL)
+    {
+        if(temp->values[0] == num)
+        {
+            temp->values[0] = temp->values[1];
+            temp->values[1] = temp->values[2];
+            temp->values[2] = NULL;
+        }
+
+        if(temp->values[1] == num)
+        {
+            temp->values[1] = temp->values[2];
+            temp->values[2] = NULL;
+        }
+
+        else
+            temp->values[2] = NULL;
+
+        temp->stored -= 1;
+
+        if(temp->stored < 2)
+        {
+            merge(temp, num);
+        }
+
+        parentDelete(temp, num);
+    }
+    return;
+}
