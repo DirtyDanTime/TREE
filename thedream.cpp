@@ -52,7 +52,7 @@ void sort(short *p, short n)
 void insert(short n)
 {
 
-	LeafNode *p = leaf();
+	Node *p = leaf();
 	if(root == NULL)
 	{
 		root = construct();
@@ -92,7 +92,7 @@ void split(LeafNode *node, short *num)
 	else
 	{
 		Node *leftNode = construct();
-		LeafNode *rightNode = construct();
+		Node *rightNode = construct();
 		leftNode->parent = node->parent;
 		leftNode->values[0] = num[0];
 		leftNode->values[1] = num[1];
@@ -108,20 +108,6 @@ void split(LeafNode *node, short *num)
 		}
 	}
 
-}
-
-
-
-LeafNode * leafSwap(Node *node)
-{
-	LeafNode *l = leaf();
-	for(int i = 0; i < node->stored; i++)
-	{
-		l->values[i] = node->values[i];
-	}
-	l->stored = node->stored;
-	l->next = NULL;
-	return l;
 }
 
 void parentDelete(Node *node, short num)
@@ -154,7 +140,7 @@ void merge(Node *node, short num)
 
 void deletion(short num)
 {
-   LeafNode *temp;
+   Node *temp;
 
     temp = search(num);
 
@@ -189,9 +175,9 @@ void deletion(short num)
 
 }
 
-LeafNode * search(short num)
+Node * search(short num)
 {
-	LeafNode *temp = leaf();
+	Node *temp = leaf();
 	temp = subSearch(root, NULL, num);
 	bool exist = false;
 
@@ -207,7 +193,7 @@ LeafNode * search(short num)
 		return NULL;
 }
 
-LeafNode * subSearch(Node *node, Node *par, short num)
+Node * subSearch(Node *node, Node *par, short num)
 {
 	if(node->isLeaf == true)
 	{

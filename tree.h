@@ -82,9 +82,9 @@ short split(Node *node, short num);
 
 void insert(short num);
 
-LeafNode * search(short num);
+Node * search(short num);
 
-LeafNode * subSearch(Node *node, Node *par, short num);
+Node * subSearch(Node *node, Node *par, short num);
 
 void deletion(short num);
 
