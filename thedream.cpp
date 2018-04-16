@@ -131,6 +131,7 @@ void deletion(short num)
         parentDelete(temp, num);
     }
     return;
+}
 
 LeafNode * search(short num)
 {
