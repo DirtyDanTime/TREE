@@ -53,6 +53,7 @@ class BTree
 
 struct Node
 {
+	Node *parent;
 	short *values;
 	Node **children;
 	bool isLeaf;
@@ -61,6 +62,7 @@ struct Node
 
 struct LeafNode
 {
+	Node *parent;
 	short *values;
 	LeafNode *next;
 	bool isLeaf;
@@ -79,7 +81,11 @@ short split(Node *node, short num);
 
 void insert(short num);
 
+<<<<<<< HEAD
 LeafNode * search(Node *node, short num);
+=======
+Node * search(Node *node, Node *par, short num);
+>>>>>>> 8ed1b2ec703342b2314f222418276914814727dc
 
 void deletion(short num);
 

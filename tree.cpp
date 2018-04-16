@@ -188,7 +188,7 @@ void insert(short num)
 
 Node * search(Node *node, short num)
 {
-	Node *found, *temp;
+	/*Node *found, *temp;
 
 	bool check1 = false;
 	bool check2 = false;
@@ -243,7 +243,9 @@ Node * search(Node *node, short num)
 
 	temp = NULL;
 
-	return temp;
+	return temp;*/
+
+	
 }
 
 void deletion(short num)

@@ -9,6 +9,7 @@ using namespace std;
 Node * construct()
 {
 	ptr = new Node;
+	ptr->parent = NULL;
 	ptr->values = new short[4];
 
 	ptr->children = new Node *[5];
@@ -53,6 +54,7 @@ void insert(short n)
 	{
 		if()
 	}
+<<<<<<< HEAD
 
 }
 
@@ -74,14 +76,26 @@ LeafNode * search(Node *node, short num)
 	{
 		LeafNode *n = leafSwap(node);
 		return n;
+=======
+	
+}
+
+Node * search(Node *node, Node *par, short num)
+{
+	if(node->isLeaf == true)
+	{
+		node->parent = par;
+		return node;
+>>>>>>> 8ed1b2ec703342b2314f222418276914814727dc
 	}
 
 	switch (num)
 	{
 		case (num < node->values[0]):
-			return search(node->children[0], num);
+			return search(node->children[0], node, num);
 			break;
 		case (node->values[0] < num && num < node->values[1]):
+<<<<<<< HEAD
 			return search(node->children[1], num);
 			break;
 		case (node->values[1] < num && num < node->values[2]):
@@ -93,4 +107,42 @@ LeafNode * search(Node *node, short num)
 		default:
 			break;
 	}
+=======
+			return search(node->children[1], node, num);
+			break;
+		case (node->values[1] < num && num < node->values[2]):
+			return search(node->children[2], node, num);
+			break;
+		case (node->values[2] < num):
+			return search(node->children[3], node, num);
+			break;
+	}
+}
+
+void parentDelete(Node *node, short num)
+{
+	if(node != NULL)
+	{
+		for(short i = 0; i < node->stored; i++)
+			if(node->values[i] == num) { node->values[i] = 0;}
+	}
+	else { return; }
+
+	parentDelete(node->parent, num);
+	
+	return;
+}
+
+void merge(Node *node, short num)
+{
+	Node *temp;
+
+	temp = construct();
+
+	temp = node->parent;
+
+
+
+	return;
+>>>>>>> 8ed1b2ec703342b2314f222418276914814727dc
 }
