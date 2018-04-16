@@ -209,7 +209,7 @@ Node * search(Node *node, short num)
 	}
 
 
-	if(found->isLeaf = true)
+	if(found->isLeaf == true)
 		return found;
 	else
 	{
@@ -219,7 +219,7 @@ Node * search(Node *node, short num)
 				temp = search(found->children[i], num);
 			if(temp == NULL)
 				continue;
-			if(temp->isLeaf = true)
+			if(temp->isLeaf == true)
 				return temp;
 		}	
 
