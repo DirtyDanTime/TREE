@@ -54,10 +54,10 @@ void insert(short n)
 	{
 		if()
 	}
-<<<<<<< HEAD
 
 }
 
+//hey
 LeafNode * leafSwap(Node *node)
 {
 	LeafNode *l = leaf();
@@ -68,55 +68,6 @@ LeafNode * leafSwap(Node *node)
 	l->stored = node->stored;
 	l->next = NULL;
 	return l;
-}
-
-LeafNode * search(Node *node, short num)
-{
-	if(node->isLeaf == true)
-	{
-		LeafNode *n = leafSwap(node);
-		return n;
-=======
-	
-}
-
-Node * search(Node *node, Node *par, short num)
-{
-	if(node->isLeaf == true)
-	{
-		node->parent = par;
-		return node;
->>>>>>> 8ed1b2ec703342b2314f222418276914814727dc
-	}
-
-	switch (num)
-	{
-		case (num < node->values[0]):
-			return search(node->children[0], node, num);
-			break;
-		case (node->values[0] < num && num < node->values[1]):
-<<<<<<< HEAD
-			return search(node->children[1], num);
-			break;
-		case (node->values[1] < num && num < node->values[2]):
-			return search(node->children[2], num);
-			break;
-		case (node->values[2] < num):
-			return search(node->children[3], num);
-			break;
-		default:
-			break;
-	}
-=======
-			return search(node->children[1], node, num);
-			break;
-		case (node->values[1] < num && num < node->values[2]):
-			return search(node->children[2], node, num);
-			break;
-		case (node->values[2] < num):
-			return search(node->children[3], node, num);
-			break;
-	}
 }
 
 void parentDelete(Node *node, short num)
@@ -144,5 +95,4 @@ void merge(Node *node, short num)
 
 
 	return;
->>>>>>> 8ed1b2ec703342b2314f222418276914814727dc
 }
