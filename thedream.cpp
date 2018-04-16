@@ -137,6 +137,45 @@ void merge(Node *node, short num)
 		
 
 	return;
+<<<<<<< HEAD
+<<<<<<< HEAD
+}
+void deletion(short num)
+{
+   LeafNode *temp;
+
+    temp = search(num);
+
+    if(temp != NULL)
+    {
+        if(temp->values[0] == num)
+        {
+            temp->values[0] = temp->values[1];
+            temp->values[1] = temp->values[2];
+            temp->values[2] = 0;
+        }
+
+        if(temp->values[1] == num)
+        {
+            temp->values[1] = temp->values[2];
+            temp->values[2] = 0;
+        }
+
+        else
+            temp->values[2] = 0;
+
+        temp->stored -= 1;
+
+        if(temp->stored < 2)
+        {
+            merge(temp, num);
+        }
+
+        parentDelete(temp, num);
+    }
+    return;
+=======
+>>>>>>> 7f21eef2022ac21f3944ac852c868ef3c1ee39e7
 }
 
 LeafNode * search(short num)
@@ -173,6 +212,17 @@ LeafNode * subSearch(Node *node, Node *par, short num)
 	else if(node->values[1] < num && num < node->values[2])
 		return subSearch(node->children[2], node, num);
 	else if(node->values[2] < num)
+<<<<<<< HEAD
+<<<<<<< HEAD
+		return search(node->children[3], node, num);
+=======
 		return subSearch(node->children[3], node, num);
 
+>>>>>>> 3ede8a5d9d4be7cac31718621a8419e405cf726d
+=======
+>>>>>>> b5eb1a5f7c0fb3b3ce3f19b931356ab5b9845a63
+=======
+		return subSearch(node->children[3], node, num);
+
+>>>>>>> 7f21eef2022ac21f3944ac852c868ef3c1ee39e7
 }
