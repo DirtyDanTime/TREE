@@ -59,7 +59,7 @@ struct Node
 	Node *next;
 	bool isLeaf;
 	short stored;
-}*root = NULL, *ptr = NULL, *x = NULL;
+}*root = NULL;
 
 /*struct LeafNode
 {
@@ -96,6 +96,7 @@ void merge(Node *node, short del, short num);
 
 #include "thedream.cpp"
 
+void output();
 //hello
 
 #endif

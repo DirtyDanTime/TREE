@@ -34,7 +34,7 @@ void sort(short *p, short n)
 	short temp;
 	for(short i = 0; i < n; i++)
 	{
-		for(short j = i; j <= n; j++)
+		for(short j = i; j < n; j++)
 		{	if(p[i] > p[j])
 			{
 				temp = p[i];
@@ -45,6 +45,10 @@ void sort(short *p, short n)
 	}
 }
 
+void output()
+{
+
+}
 //hey tyler
 
 void insert(short n)
@@ -54,17 +58,18 @@ void insert(short n)
 	if(root == NULL)
 	{
 		root = construct();
-		x = root;
+		p = root;
 	}
 	else
 	{
 		p = search(n, false);
 	}
-	if(ptr->stored < 3)
+	if(p->stored < 3)
 	{
-		ptr->values[ptr->stored] = n;
-		ptr->stored++;
-		sort(ptr->values, ptr->stored);
+		p->values[ptr->stored] = n;
+		p->stored++;
+		if(p->stored > 1)
+			sort(p->values, p->stored);
 	}
 	else
 	{
@@ -74,8 +79,9 @@ void insert(short n)
 			four[i] = ptr->values[i];
 		}
 		four[3] = n;
+		cout << "1" << endl;
 		sort(four, 4);
-		split(ptr, NULL, *four);
+		split(p, NULL, *four);
 	}
 
 }
@@ -86,11 +92,16 @@ void split(Node *node, Node *last, short *num)
 
 	if(parent != NULL)
 	{
-		if(last == NULL) {
+		if(last == NULL) 
+		{
 			Node *newNode = construct();
 			node->values[0] = num[0];
 			node->values[1] = num[1];
 			node->values[2] = 0;
+			if(node->isLeaf)
+				node->next = newNode;
+			else
+				newNode->isLeaf = false;
 			newNode->parent = node->parent;
 			newNode->values[0] = num[2];
 			newNode->values[1] = num[3];
@@ -170,6 +181,10 @@ void split(Node *node, Node *last, short *num)
 			node->values[1] = 0;
 			node->values[2] = 0;
 			node->stored = 1;
+			if(node->isLeaf)
+				node->next = newNode;
+			else
+				newNode->isLeaf = false;
 			newNode->parent = parent;
 			newNode->values[0] = num[2];
 			newNode->values[1] = num[3];
@@ -213,6 +228,8 @@ void split(Node *node, Node *last, short *num)
 
 		Node *newNode = construct();
 		Node *newRoot = construct();
+		if(last != NULL)
+		{
 			if(last->values[0] > node->children[0]->values[0] && last->values[0] < node->children[1]->values[0])
 			{
 				newNode->children[0] = node->children[1];
@@ -246,18 +263,49 @@ void split(Node *node, Node *last, short *num)
 				node->children[2] = NULL;
 				node->children[3] = NULL;
 			}
+		}
+		else
+		{
 			node->parent = newRoot;
 			node->values[0] = num[0];
-			node->values[1] = 0;
+			node->values[1] = num[1];
 			node->values[2] = 0;
 			node->stored = 1;
 			newNode->parent = newRoot;
 			newNode->values[0] = num[2];
 			newNode->values[1] = num[3];
 			newNode->stored = 2;
+			if(node->isLeaf)
+				node->next = newNode;
+			else
+				newNode->isLeaf = false;
+			newRoot->stored = 1;
 			newRoot->values[0] = num[1];
 			newRoot->children[0] = node;
 			newRoot->children[1] = newNode;
+			newRoot->isLeaf = false;
+			root = newRoot;
+			return;
+		}
+		node->parent = newRoot;
+		node->values[0] = num[0];
+		node->values[1] = 0;
+		node->values[2] = 0;
+		node->stored = 1;
+		newNode->parent = newRoot;
+		newNode->values[0] = num[2];
+		newNode->values[1] = num[3];
+		newNode->stored = 2;
+		if(node->isLeaf)
+			node->next = newNode;
+		else
+			newNode->isLeaf = false;
+		newRoot->stored = 1;
+		newRoot->values[0] = num[1];
+		newRoot->children[0] = node;
+		newRoot->children[1] = newNode;
+		newRoot->isLeaf = false;
+		root = newRoot;
 	}
 
 }
@@ -544,4 +592,5 @@ Node * subSearch(Node *node, Node *par, short num)
 		return subSearch(node->children[3], node, num);
 		
 
+	return node;
 }
