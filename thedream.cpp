@@ -43,9 +43,6 @@ void insert(short num)
 	{
 		if()
 	}
-
-<<<<<<< HEAD
-=======
 	
 }
 
@@ -69,5 +66,4 @@ Node * search(Node *node, short num)
 			return search(node->children[3]);
 			break;
 	}
->>>>>>> 80ef448c49a935371d1afd02826220cf9a48c0d5
 }
