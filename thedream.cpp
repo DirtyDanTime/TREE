@@ -303,12 +303,10 @@ void parentDelete(Node *node, short num)
 void merge(Node *node, short del, short num)
 {
 	Node *temp = construct();
-	//Node *child = construct(); 
 	temp = node->parent;
 	short child = 0; 
 	bool place = false;
 	short childNo = 0;
-	//short compare = node->values[0];
 
 	for(short i = 0; i < 4; i++)
 	{
@@ -327,24 +325,130 @@ void merge(Node *node, short del, short num)
 		case 0:
 			if(temp->children[1]->stored == 3)
 			{
-				temp->children[0]->values[1] = temp->values[0];
+				node->values[1] = temp->children[1]->values[0];
 				temp->values[0] = temp->children[1]->values[0];
 				temp->children[1]->values[0] = temp->children[1]->values[1];
 				temp->children[1]->values[1] = temp->children[1]->values[2];
-				temp->children[1]->values[2] = temp->children[1]->values[3];
-
+				temp->children[1]->values[2] = 0;
 				return;
 			}
 			else if(temp->children[1]->stored <= 2)
 			{
-				temp->values[0]
+				temp->values[0] = temp->values[1];
+				temp->values[1] = temp->values[2];
+				temp->values[2] = NULL;
+				temp->children[0]->values[1] = temp->children[1]->values[0]; 
+				temp->children[0]->values[2] = temp->children[1]->values[1];
+				temp->children[1] = temp->children[2]
+				temp->children[2] = temp->children[3]
+				temp->children[3] = NULL;
+
+				return;
 			}
 			break;
 		case 1:
+			if(temp->children[0]->stored  == 3)
+			{
+				node->values[1] = node->values[0];
+				node->values[0] = temp->children[0]->values[2];
+				temp->values[0] = temp->children[0]->values[1];
+				temp->children[0]->values[2] = 0;
+				
+				return;
+			}
+			else if(temp->children[2]->stored == 3)
+			{
+				node->values[1] = temp->children[2]->values[0];
+				temp->values[0] = temp->children[2]->values[0];
+				temp->children[2]->values[0] = temp->children[2]->values[1];
+				temp->children[2]->values[1] = temp->children[2]->values[2];
+				temp->children[2]->values[2] = 0;
+				return;
+			}
+			else if(temp->children[0]->stored <= 2)
+			{
+				temp->values[0] = temp->values[1];
+				temp->values[1] = temp->values[2];
+				temp->values[2] = NULL;
+				temp->children[0]->values[2] = temp->children[1]->values[0]; 
+				temp->children[1] = temp->children[2]
+				temp->children[2] = temp->children[3]
+				temp->children[3] = NULL;
+
+				return;
+			}
+			else if(temp->children[2]->stored <= 2)
+			{
+				temp->values[1] = temp->values[2];
+				temp->values[2] = NULL;
+				temp->children[1]->values[1] = temp->children[2]->values[0]; 
+				temp->children[1]->values[2] = temp->children[2]->values[1];
+				temp->children[2] = temp->children[3]
+				temp->children[3] = NULL;
+
+				return;
+			}
+
 			break;
 		case 2:
+			if(temp->children[1]->stored  == 3)
+			{
+				node->values[1] = node->values[0];
+				node->values[0] = temp->children[1]->values[2];
+				temp->values[1] = temp->children[1]->values[1];
+				temp->children[1]->values[2] = 0;
+				
+				return;
+			}
+			else if(temp->children[3]->stored == 3)
+			{
+				node->values[1] = temp->children[3]->values[0];
+				temp->values[0] = temp->children[3]->values[0];
+				temp->children[3]->values[0] = temp->children[3]->values[1];
+				temp->children[3]->values[1] = temp->children[3]->values[2];
+				temp->children[3]->values[2] = 0;
+				return;
+			}
+			else if(temp->children[1]->stored <= 2)
+			{
+				temp->values[1] = temp->values[2];
+				temp->values[2] = NULL;
+				temp->children[1]->values[2] = temp->children[1]->values[0]; 
+				temp->children[2] = temp->children[3]
+				temp->children[3] = NULL;
+
+				return;
+			}
+			else if(temp->children[3]->stored <= 2)
+			{
+				temp->values[2] = NULL;
+				temp->children[2]->values[1] = temp->children[3]->values[0]; 
+				temp->children[2]->values[2] = temp->children[3]->values[1];
+				temp->children[3] = NULL;
+
+				return;
+			}
+
 			break;
 		case 3:
+			if(temp->children[2]->stored  == 3)
+			{
+				node->values[1] = node->values[0];
+				node->values[0] = temp->children[2]->values[2];
+				temp->values[1] = temp->children[2]->values[1];
+				temp->children[2]->values[2] = 0;
+				
+				return;
+			}
+			else if(temp->children[2]->stored <= 2)
+			{
+				temp->values[2] = NULL;
+				temp->children[2]->values[2] = temp->children[3]->values[0]; 
+				temp->children[3] = NULL;
+
+				return;
+			}
+
 			break;
 	}
 
@@ -424,12 +528,14 @@ Node * subSearch(Node *node, Node *par, short num)
 	if(node->isLeaf == true)
 	{
 		node->parent = par;
-		return leafSwap(node);
+		return node;
 	}
 
 	
 	if(num < node->values[0])
 		return subSearch(node->children[0], node, num);
+	else if(num > node->values[0] && node->values[1] == 0)
+		return
 	else if(node->values[0] < num && num < node->values[1])
 		return subSearch(node->children[1], node, num);
 	else if(node->values[1] < num && num < node->values[2])
