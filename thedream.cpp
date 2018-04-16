@@ -58,7 +58,7 @@ void insert(short n)
 	}
 	else
 	{
-		p = search(n);
+		p = search(n, false);
 	}
 	if(ptr->stored < 3)
 	{
@@ -300,7 +300,7 @@ void parentDelete(Node *node, short num)
 	return;
 }
 
-void merge(LeafNode *node, short num)
+void merge(Node *node, short del, short num)
 {
 	Node *temp = construct();
 	//Node *child = construct(); 
@@ -359,7 +359,7 @@ void deletion(short num)
 
     Node *temp;
 
-    temp = search(num);
+    temp = search(num, true);
 
     short first = 0;
 
@@ -386,8 +386,7 @@ void deletion(short num)
         if(temp->stored < 2)
         {
         	first = temp->values[0];
-        	parentDelete(temp, num);
-            merge(temp, first);
+            merge(temp, num, first);
             return;
         }
 
@@ -397,22 +396,27 @@ void deletion(short num)
 
 }
 
-Node * search(short num)
+Node * search(short num, bool exact)
 {
 	Node *temp = leaf();
 	temp = subSearch(root, NULL, num);
 	bool exist = false;
 
-	for(short i = 0; i < temp->stored; i++)
-	{
-		if(temp->values[i] == num)
-			exist = true;
-	}
+	if(exact == true)
+	{	
+			for(short i = 0; i < temp->stored; i++)
+			{
+				if(temp->values[i] == num)
+					exist = true;
+			}
 
-	if(exist == true)
-		return temp;
+			if(exist == true)
+				return temp;
+			else 
+				return NULL;
+	}
 	else 
-		return NULL;
+		return temp;
 }
 
 Node * subSearch(Node *node, Node *par, short num)

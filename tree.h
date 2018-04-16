@@ -86,15 +86,13 @@ void insert(short num);
 //LeafNode * search(short num);
 
 //LeafNode * subSearch(Node *node, Node *par, short *num);
-=======
-Node * search(short num);
+Node * search(short num, bool exact);
 
 Node * subSearch(Node *node, Node *par, short num);
->>>>>>> fceee05f309c9d7f8784149de9c454c9adf2e6ad
 
 void deletion(short num);
 
-void merge(LeafNode *node, short num);
+void merge(Node *node, short del, short num);
 
 #include "thedream.cpp"
 
