@@ -82,17 +82,15 @@ void split(Node *node, Node *last, short num);
 
 void insert(short num);
 
-<<<<<<< HEAD
-//LeafNode * search(short num);
+void parentDelete(Node *node, short num);
 
-//LeafNode * subSearch(Node *node, Node *par, short *num);
 Node * search(short num, bool exact);
 
 Node * subSearch(Node *node, Node *par, short num);
 
 void deletion(short num);
 
-void merge(Node *node, short del, short num);
+void merge(Node *node, short num);
 
 #include "thedream.cpp"
 

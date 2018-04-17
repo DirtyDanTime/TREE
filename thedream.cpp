@@ -310,9 +310,14 @@ void split(Node *node, Node *last, short *num)
 
 }
 
-void parentDelete(Node *node, short num)
+Node * childfind()
 {
-	bool deleted = false;
+
+}
+
+void parentDelete(Node *node, short num, short replace)
+{
+	short place = 99;
 
 	if(node != NULL)
 	{
@@ -320,24 +325,10 @@ void parentDelete(Node *node, short num)
 		{
 			if(node->values[i] == num)
 			{
-				node->values[i] = 0;
-				node->stored--;
-				deleted = true;
+				node->values[i] = replace;			
+				return;
 			}
-
-			if(deleted == true)
-			{
-				for(short j = i; j < 4; j++)
-				{
-					if(j == 3)
-					{
-						parentDelete(node->parent, num);
-						return;
-					}
-					else
-						node->values[j] = node->values[j+1];
-				}
-			}
+			
 		}
 
 	}
@@ -348,7 +339,7 @@ void parentDelete(Node *node, short num)
 	return;
 }
 
-void merge(Node *node, short del, short num)
+void merge(Node *node, short num)
 {
 	Node *temp = construct();
 	temp = node->parent;
@@ -378,21 +369,25 @@ void merge(Node *node, short del, short num)
 				temp->children[1]->values[0] = temp->children[1]->values[1];
 				temp->children[1]->values[1] = temp->children[1]->values[2];
 				temp->children[1]->values[2] = 0;
+				temp->children[0]->stored = 2;
+				temp->children[1]->stored = 2;
 				return;
 			}
 			else if(temp->children[1]->stored <= 2)
 			{
 				temp->values[0] = temp->values[1];
 				temp->values[1] = temp->values[2];
-				temp->values[2] = NULL;
+				temp->values[2] = 0;
 				temp->children[0]->values[1] = temp->children[1]->values[0]; 
 				temp->children[0]->values[2] = temp->children[1]->values[1];
-				temp->children[1] = temp->children[2]
-				temp->children[2] = temp->children[3]
+				temp->children[1] = temp->children[2];
+				temp->children[2] = temp->children[3];
 				temp->children[3] = NULL;
+				temp->children[0]->stored = 3;
 
 				return;
 			}
+
 			break;
 		case 1:
 			if(temp->children[0]->stored  == 3)
@@ -401,6 +396,8 @@ void merge(Node *node, short del, short num)
 				node->values[0] = temp->children[0]->values[2];
 				temp->values[0] = temp->children[0]->values[1];
 				temp->children[0]->values[2] = 0;
+				temp->children[0]->stored = 2;
+				temp->children[1]->stored = 2;
 				
 				return;
 			}
@@ -411,28 +408,32 @@ void merge(Node *node, short del, short num)
 				temp->children[2]->values[0] = temp->children[2]->values[1];
 				temp->children[2]->values[1] = temp->children[2]->values[2];
 				temp->children[2]->values[2] = 0;
+				temp->children[1]->stored = 2;
+				temp->children[2]->stored = 2;
 				return;
 			}
 			else if(temp->children[0]->stored <= 2)
 			{
 				temp->values[0] = temp->values[1];
 				temp->values[1] = temp->values[2];
-				temp->values[2] = NULL;
+				temp->values[2] = 0;
 				temp->children[0]->values[2] = temp->children[1]->values[0]; 
-				temp->children[1] = temp->children[2]
-				temp->children[2] = temp->children[3]
+				temp->children[1] = temp->children[2];
+				temp->children[2] = temp->children[3];
 				temp->children[3] = NULL;
+				temp->children[0]->stored = 3;
 
 				return;
 			}
 			else if(temp->children[2]->stored <= 2)
 			{
 				temp->values[1] = temp->values[2];
-				temp->values[2] = NULL;
+				temp->values[2] = 0;
 				temp->children[1]->values[1] = temp->children[2]->values[0]; 
 				temp->children[1]->values[2] = temp->children[2]->values[1];
-				temp->children[2] = temp->children[3]
+				temp->children[2] = temp->children[3];
 				temp->children[3] = NULL;
+				temp->children[1]->stored = 3;
 
 				return;
 			}
@@ -445,6 +446,8 @@ void merge(Node *node, short del, short num)
 				node->values[0] = temp->children[1]->values[2];
 				temp->values[1] = temp->children[1]->values[1];
 				temp->children[1]->values[2] = 0;
+				temp->children[1]->stored = 2;
+				temp->children[2]->stored = 2;
 				
 				return;
 			}
@@ -455,24 +458,29 @@ void merge(Node *node, short del, short num)
 				temp->children[3]->values[0] = temp->children[3]->values[1];
 				temp->children[3]->values[1] = temp->children[3]->values[2];
 				temp->children[3]->values[2] = 0;
+				temp->children[2]->stored = 2;
+				temp->children[3]->stored = 2;
+
 				return;
 			}
 			else if(temp->children[1]->stored <= 2)
 			{
 				temp->values[1] = temp->values[2];
-				temp->values[2] = NULL;
-				temp->children[1]->values[2] = temp->children[1]->values[0]; 
-				temp->children[2] = temp->children[3]
+				temp->values[2] = 0;
+				temp->children[1]->values[2] = temp->children[2]->values[0]; 
+				temp->children[2] = temp->children[3];
 				temp->children[3] = NULL;
+				temp->children[1]->stored = 3;
 
 				return;
 			}
 			else if(temp->children[3]->stored <= 2)
 			{
-				temp->values[2] = NULL;
+				temp->values[2] = 0;
 				temp->children[2]->values[1] = temp->children[3]->values[0]; 
 				temp->children[2]->values[2] = temp->children[3]->values[1];
 				temp->children[3] = NULL;
+				temp->children[2]->stored = 3;
 
 				return;
 			}
@@ -485,14 +493,17 @@ void merge(Node *node, short del, short num)
 				node->values[0] = temp->children[2]->values[2];
 				temp->values[1] = temp->children[2]->values[1];
 				temp->children[2]->values[2] = 0;
-				
+				temp->children[2]->stored = 2;
+				temp->children[3]->stored = 2;
+
 				return;
 			}
 			else if(temp->children[2]->stored <= 2)
 			{
-				temp->values[2] = NULL;
+				temp->values[2] = 0;
 				temp->children[2]->values[2] = temp->children[3]->values[0]; 
 				temp->children[3] = NULL;
+				temp->children[2]->stored = 3;
 
 				return;
 			}
@@ -513,7 +524,9 @@ void deletion(short num)
 
     temp = search(num, true);
 
+    short amount = temp->stored;
     short first = 0;
+    short rep = temp->values[amount - 1];
 
     if(temp != NULL)
     {
@@ -538,7 +551,8 @@ void deletion(short num)
         if(temp->stored < 2)
         {
         	first = temp->values[0];
-            merge(temp, num, first);
+            merge(temp, first);
+            parentDelete(temp, num, rep);
             return;
         }
 
