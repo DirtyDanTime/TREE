@@ -460,6 +460,7 @@ void split(Node *node, Node *last, short *num)
 
 void parentDelete(Node *node, short num, short replace)
 {
+<<<<<<< HEAD
         if(node != NULL)
         {
                 for(short i = 0; i < node->stored; i++)
@@ -478,6 +479,28 @@ void parentDelete(Node *node, short num, short replace)
         parentDelete(node->parent, num, replace);
 
         return;
+=======
+	short place = 99;
+
+	if(node != NULL)
+	{
+		for(short i = 0; i < node->stored; i++)
+		{
+			if(node->values[i] == num)
+			{
+				node->values[i] = replace;			
+				return;
+			}
+			
+		}
+
+	}
+	else { return; }
+
+	parentDelete(node->parent, num, replace);
+	
+	return;
+>>>>>>> af6473142ab73b224f68f6b05194411dd8cd3ff1
 }
 
 void merge(Node *node, short num)
@@ -746,8 +769,12 @@ void remove(short num)
             parentDelete(temp, num, rep);
             return;
         }
+<<<<<<< HEAD
         amount = temp->stored;
         rep = temp->values[amount - 1];
+=======
+
+>>>>>>> af6473142ab73b224f68f6b05194411dd8cd3ff1
         parentDelete(temp, num, rep);
     }
     else
