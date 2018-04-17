@@ -193,8 +193,6 @@ void sort(short *p, short n)
         }
 }
 
-//hey tyler
-
 void insert(short n)
 {
 
@@ -550,17 +548,6 @@ void merge(Node *node, short num)
 
                                 return;
                         }
-                        else if(temp->children[2]->stored == 3)
-                        {
-                                node->values[1] = temp->children[2]->values[0];
-                                temp->values[0] = temp->children[2]->values[0];
-                                temp->children[2]->values[0] = temp->children[2]->values[1];
-                                temp->children[2]->values[1] = temp->children[2]->values[2];
-                                temp->children[2]->values[2] = 0;
-                                temp->children[1]->stored = 2;
-                                temp->children[2]->stored = 2;
-                                return;
-                        }
                         else if(temp->children[0]->stored <= 2)
                         {
                                 temp->values[0] = temp->values[1];
@@ -579,6 +566,17 @@ void merge(Node *node, short num)
                                 temp->children[0]->stored = numOfStored;
 
 
+                                return;
+                        }
+                        else if(temp->children[2]->stored == 3)
+                        {
+                                node->values[1] = temp->children[2]->values[0];
+                                temp->values[0] = temp->children[2]->values[0];
+                                temp->children[2]->values[0] = temp->children[2]->values[1];
+                                temp->children[2]->values[1] = temp->children[2]->values[2];
+                                temp->children[2]->values[2] = 0;
+                                temp->children[1]->stored = 2;
+                                temp->children[2]->stored = 2;
                                 return;
                         }
                         else if(temp->children[2]->stored <= 2)
@@ -730,6 +728,7 @@ void remove(short num)
 
         }
 
+
         else
         {
             temp->values[2] = 0;
@@ -784,7 +783,6 @@ Node * subSearch(Node *node, Node *par, short num)
         if(node->isLeaf == true)
         {
                 node->parent = par;
-                cout << node->values[0] << endl << endl;
                 return node;
         }
         if(node->stored == 1)
@@ -818,6 +816,3 @@ Node * subSearch(Node *node, Node *par, short num)
 
         return node;
 }
-
-
-
