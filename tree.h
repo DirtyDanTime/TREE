@@ -82,7 +82,7 @@ void split(Node *node, Node *last, short num);
 
 void insert(short num);
 
-void parentDelete(Node *node, short num);
+void parentDelete(Node *node, short num, short replace);
 
 Node * search(short num, bool exact);
 

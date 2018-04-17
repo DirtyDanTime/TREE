@@ -334,7 +334,7 @@ void parentDelete(Node *node, short num, short replace)
 	}
 	else { return; }
 
-	parentDelete(node->parent, num);
+	parentDelete(node->parent, num, replace);
 	
 	return;
 }
@@ -556,7 +556,7 @@ void deletion(short num)
             return;
         }
 
-        parentDelete(temp, num);
+        parentDelete(temp, num, rep);
     }
     return;
 
