@@ -24,11 +24,8 @@ void split(Node *node, Node *last, short *num);
 
 void insert(short num);
 
-<<<<<<< HEAD
-=======
 void parentDelete(Node *node, short num, short replace);
 
->>>>>>> af6473142ab73b224f68f6b05194411dd8cd3ff1
 Node * search(short num, bool exact);
 
 Node * subSearch(Node *node, Node *par, short num);
